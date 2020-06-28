@@ -6,9 +6,14 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Validator;
 use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
 
 class RegisterController extends Controller
 {
+    protected $providers = [
+        'google','facebook',
+    ];
+
     public function register(Request $request){
         $validator = Validator::make($request->all(),[
            'title' => 'required',
@@ -36,6 +41,22 @@ class RegisterController extends Controller
 
         $accessToken = $user->createToken('authToken')->accessToken;
 
-        return response()->json(['user' => auth()->user(), 'accessToken' => $accessToken]);
+        return response()->json(['message'=>'Sign up Successful','user' => auth()->user(), 'accessToken' => $accessToken]);
+    }
+
+    /**
+     * Sign up with Google account
+     * @param Request $request
+     */
+    public function registerWithGoogle(Request $request){
+
+    }
+
+    /**
+     * @register user with facebook account
+     * @param Request $request
+    */
+    public function registerWithFacebook(Request $request){
+
     }
 }
