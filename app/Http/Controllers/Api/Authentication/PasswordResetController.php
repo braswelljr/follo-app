@@ -16,9 +16,10 @@ class PasswordResetController extends Controller
      * Create token password Reset
      *
      * @param Request $request
+     * @return JsonResponse
      */
     public function create(Request $request){
-        $request->validate([
+        Validator::make($request->email,[
             'email' => 'email|string|required',
         ]);
 
@@ -30,9 +31,9 @@ class PasswordResetController extends Controller
             return response()->json(['message' => 'No User Found', 404]);
 
         $passwordReset = PasswordReset::updateorCreate(
-            ['email' => $user->email],
+            ['email' => $user['email']],
             [
-                'email' => $user->email,
+                'email' => $user['email'], //->emails where $user['emails']
                 'token' => $user->createToken('authToken')->accessToken,
             ]
         );

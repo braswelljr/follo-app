@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Authentication;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
@@ -20,7 +21,7 @@ class RegisterController extends Controller
            'first_name' => 'required',
            'middle_name' => 'nullable',
             'last_name' => 'nullable',
-            'date_of_birth/age' => 'required',
+            'date_of_birth_or_age' => 'required',
             'gender' => 'required',
             'marital_status' => 'required',
             'telephone' => 'required',
@@ -39,9 +40,9 @@ class RegisterController extends Controller
 
         $user = User::create($input);
 
-        $accessToken = $user->createToken('authToken')->accessToken;
+        $accessToken = $user->createToken('remember_token')->accessToken;
 
-        return response()->json(['message'=>'Sign up Successful','user' => auth()->user(), 'accessToken' => $accessToken]);
+        return response()->json(['message'=>'Login Successful','user' => auth()->user(), 'remember_token' => $accessToken]);
     }
 
     /**

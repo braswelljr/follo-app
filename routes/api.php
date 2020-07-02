@@ -29,3 +29,4 @@ Route::group([
     Route::get('find/{token}', 'PasswordResetController@find');
     Route::post('reset', 'PasswordResetController@reset');
 });
+Route::post('updateAuthUser/{id}','Api\UserUpdateController@updateAuthUser');
