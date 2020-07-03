@@ -3,12 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
 use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Auth;
 use Validator;
 
 class UserUpdateController extends Controller
@@ -32,4 +29,3 @@ class UserUpdateController extends Controller
         return response()->json(['message'=>'User Information Update Successful', 'user' => $user,],200);
     }
 }
-
