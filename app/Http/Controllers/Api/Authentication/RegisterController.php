@@ -46,7 +46,11 @@ class RegisterController extends Controller
         //create access token
         $accessToken = $user->createToken('remember_token')->accessToken;
 
+<<<<<<< HEAD
         return response()->json(['message'=>'User Registration Successful','user' => $user, 'remember_token' => $accessToken]);
+=======
+        return response()->json(['message'=>'Login Successful','user' => $user, 'remember_token' => $accessToken]);
+>>>>>>> bb942fc396855be5129cf6341ceee88425f01ec0
     }
 
     /**
