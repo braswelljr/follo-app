@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\Authentication;
 
 use App\Http\Controllers\Controller;
 use App\User;
-use Illuminate\Support\Facades\Auth;
 use Validator;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
@@ -18,16 +17,17 @@ class RegisterController extends Controller
     public function register(Request $request){
         //validate user input
         $validator = Validator::make($request->all(),[
-           'title' => 'required',
-           'first_name' => 'required',
+           'title' => 'nullable',
+           'first_name' => 'nullable',
            'middle_name' => 'nullable',
             'last_name' => 'nullable',
-            'date_of_birth_or_age' => 'required',
-            'gender' => 'required',
-            'marital_status' => 'required',
+            'username' => 'required|unique:users',
+            'date_of_birth_or_age' => 'nullable',
+            'gender' => 'nullable',
+            'marital_status' => 'nullable',
             'telephone' => 'required',
             'residence' => 'nullable',
-            'email' => 'required|email|unique:users',
+            'email' => 'nullable',
             'password' => 'required',
             'confirm_password' => 'required|same:password',
         ]);
@@ -39,18 +39,17 @@ class RegisterController extends Controller
         //hash password
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
+        $input['customer_id'] = uniqid();
 
         //create user
         $user = User::create($input);
 
-        //create access token
+        //create access token //->insert access token into user input
         $accessToken = $user->createToken('remember_token')->accessToken;
+        $user['remember_token'] = $accessToken;
 
-<<<<<<< HEAD
+
         return response()->json(['message'=>'User Registration Successful','user' => $user, 'remember_token' => $accessToken]);
-=======
-        return response()->json(['message'=>'Login Successful','user' => $user, 'remember_token' => $accessToken]);
->>>>>>> bb942fc396855be5129cf6341ceee88425f01ec0
     }
 
     /**

@@ -16,7 +16,9 @@
         "laravel/passport": "^9.2",
         "laravel/socialite": "^4.4",
         "laravel/tinker": "^2.0",
-        "nesbot/carbon": "^2.35"
+        "nesbot/carbon": "^2.35",
+      "ext-json": "*",
+        "ext-curl": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

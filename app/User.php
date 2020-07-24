@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
@@ -17,8 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'title','first_name','middle_name','last_name', 'date_of_birth_or_age', 'gender', 'marital_status', 'telephone', 'residence', 'email', 'password',
-        'avatar', 'provider_id', 'provider',
+        'title','customer_id','first_name','middle_name','last_name','username', 'date_of_birth_or_age', 'gender', 'marital_status', 'telephone', 'residence', 'email', 'password', 'avatar',
     ];
 
     /**
@@ -29,5 +29,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * user task relationship
+     *
+     * @return HasMany
+     * @var
+     */
+    public function tasks(){
+        return $this->hasMany(Task::class);
+    }
 
 }

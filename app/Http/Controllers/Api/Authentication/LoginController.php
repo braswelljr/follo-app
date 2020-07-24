@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Authentication;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\JsonResponse;
@@ -24,7 +25,7 @@ class LoginController extends Controller
      * @return Application|ResponseFactory|JsonResponse|Response
      */
     public function login(Request $request){
-        $credentials = $request->only(['email', 'password']);
+        $credentials = $request->only(['email','username', 'password']);
 
         if (!Auth::attempt($credentials)){
             return response(['message' => 'Wrong Credentials']);
@@ -38,6 +39,7 @@ class LoginController extends Controller
     /**
      *Login with Google
      * @param Request $request
+     * @return void
      */
     public function loginWithGoogle(Request $request){
 
