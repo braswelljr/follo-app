@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('customer_id')->unique();
             $table->string('title')->nullable();
@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('telephone');
             $table->text('residence')->nullable();
 
-            $table->string('avatar')->nullable();
+            $table->binary('avatar')->nullable();
 //            $table->string('provider', 20)->nullable();
 //            $table->string('access_token')->nullable();
 
