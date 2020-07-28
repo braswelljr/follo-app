@@ -22,18 +22,19 @@ class LoginController extends Controller
      *
      * @param Request $request
      *
-     * @return Application|ResponseFactory|JsonResponse|Response
+     * @return JsonResponse|Response
      */
     public function login(Request $request){
         $credentials = $request->only(['email','username', 'password']);
 
         if (!Auth::attempt($credentials)){
-            return response(['message' => 'Wrong Credentials']);
+            return response(['message' => 'Wrong Credentials or User Does not exists.']);
         }
 
-        $accessToken = Auth::user()->createToken('authToken')->accessToken;
+        //create access token
+        $accessToken = Auth::user()->createToken('remember_token')->accessToken;
 
-        return response()->json(['message'=>'Login Successful','user' => Auth::user(), 'accessToken' => $accessToken]);
+        return response()->json(['message'=>'User Login Successful','user' => Auth::user(), 'remember_token' => $accessToken]);
     }
 
     /**

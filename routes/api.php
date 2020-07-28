@@ -45,7 +45,10 @@ Route::group([
     Route::post('updateAuthUser/{id}','UserUpdateController@updateAuthUser');
 
     //task update
-    Route::post('createTask/{id}', 'TaskController@createTask');
-    Route::post('updateTask/{id}', 'TaskController@updateTask');
-    Route::post('deleteTask/{id}', 'TaskController@deleteTask');
+    Route::post('createTask/{id}', 'TaskController@createTask');//->uses the users id
+    Route::post('updateTask/{id}', 'TaskController@updateTask');//->uses the task id
+    Route::post('viewTask/{id}', 'TaskController@viewTask');//->uses the task id
+    Route::post('deleteTask/{id}', 'TaskController@deleteTask');//->uses the task id
+    Route::post('show/{id}', 'TaskController@show');//->uses the users id
+    Route::post('taskStatus/{status}', 'TaskController@taskStatus');//-> status types incoming or past
 });

@@ -16,7 +16,7 @@ class Task extends Model
      * @var array
     */
     protected $fillable = [
-        'appointment','type','status','body','reminder'
+        'user_id','appointment','type','status','body','reminder'
     ];
 
     /**
@@ -24,9 +24,7 @@ class Task extends Model
      *
      * @var array
      */
-    protected $hidden = [
-        'user_id'
-    ];
+    protected $hidden = [];
 
     /**
      * user task relationship

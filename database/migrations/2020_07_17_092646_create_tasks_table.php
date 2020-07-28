@@ -16,7 +16,7 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->constrained('user');
+            $table->unsignedBigInteger('user_id')->constrained();
             //$table->string('username');
             $table->string('appointment');
             $table->string('type');         //->clinic or personal appointments

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Authentication;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Symfony\Component\Console\Input\Input;
 use Validator;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
@@ -46,7 +47,6 @@ class RegisterController extends Controller
 
         //create access token //->insert access token into user input
         $accessToken = $user->createToken('remember_token')->accessToken;
-        $user['remember_token'] = $accessToken;
 
 
         return response()->json(['message'=>'User Registration Successful','user' => $user, 'remember_token' => $accessToken]);

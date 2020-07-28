@@ -7,6 +7,7 @@ use App\Task;
 use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
@@ -14,7 +15,7 @@ class TaskController extends Controller
      * create task
      *
      * @param Request $request
-     * @param $id
+     * @param $id // searches for a user by id and creates a task for the user
      * @return JsonResponse
      */
     public function createTask(Request $request, $id){
@@ -52,16 +53,15 @@ class TaskController extends Controller
     }
 
     /**
-     * user task delete
+     * show task
      *
-     * @param Request $request
      * @param $id
      * @return JsonResponse
      */
-    public function viewTask(Request $request, $id){
-        $tasks = $request->user()->tasks()->with('appointment: id,user_id');
+    public function viewTask($id){
+        $task = Task::find($id);
 
-        return response()->json([200]);
+        return response()->json(['task' => $task,],200);
     }
 
     /**
@@ -75,9 +75,38 @@ class TaskController extends Controller
         //task id
         $task = Task::find($id);
 
+        if ($task == null){
+            return response()->json(['message' => 'No task or content to delete  for this id'], 200);
+        }
+
         //delete tasks from user task
         $task->delete($request->all());
 
-        return response()->json(['message' => 'Task deleted successfully', 'task' => null,], 204);
+        return response()->json(['message' => 'Task deleted successfully', 'task' => null,], 200);//204 ->request processed successfully but no content to return
+    }
+
+    /**
+     * Get all tasks for a user
+     *
+     * @param $id
+     * @return JsonResponse
+     */
+    public function show($id){
+        $task = DB::table('tasks')->where('user_id', '=', $id)->get();
+
+        return response()->json(['message' => 'Successful', 'tasks' => $task], 200);
+    }
+
+    /**
+     * Get all tasks for a user with status
+     *incoming or past as the option for the $status parameter
+     *
+     * @param $status
+     * @return JsonResponse
+     */
+    public function taskStatus($status){
+        $task = DB::table('tasks')->where('status', '=', $status)->get();
+
+        return response()->json(['message' => 'Successful', 'tasks' => $task], 200);
     }
 }
