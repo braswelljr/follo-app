@@ -109,4 +109,20 @@ class TaskController extends Controller
 
         return response()->json(['message' => 'Successful', 'tasks' => $task], 200);
     }
+
+    /**
+     * Search for a user task or appointment
+     *
+     * @param $query
+     * @return JsonResponse
+    */
+    public function search($query){
+        $columns = [ 'appointment', 'type', 'status',];
+
+        foreach ($columns as $column){
+            $task = DB::table('tasks')->where(''.$column, '=', $query )->get();
+
+            return  response()->json(['task' => $task,], 200);
+        }
+    }
 }

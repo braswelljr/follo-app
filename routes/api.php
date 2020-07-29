@@ -51,4 +51,5 @@ Route::group([
     Route::post('deleteTask/{id}', 'TaskController@deleteTask');//->uses the task id
     Route::post('show/{id}', 'TaskController@show');//->uses the users id
     Route::post('taskStatus/{status}', 'TaskController@taskStatus');//-> status types incoming or past
+    Route::get('search/appointments={query}', 'TaskController@search');//->search and filter task
 });
