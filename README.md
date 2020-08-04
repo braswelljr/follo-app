@@ -8,11 +8,11 @@ It has the features of
     Authentication includes :
     <ul>
         <li>
-            <h4>Login</h4>
+            <a href="#"><h4>Login</h4></a>
             Login allows authorized users to login to an application.
         </li>
         <li>
-            <h4>Registration</h4>
+            <a href="#"><h4>Registration</h4></a>
             The registration feature of the API allows a new user to be authorized and made eligible use the application.
         </li>
     </ul>
