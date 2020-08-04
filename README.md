@@ -8,7 +8,7 @@ It has the features of
     Authentication includes :
     <ul>
         <li>
-            <<h4>a href="#">Login</a></h4>
+            <h4><a href="#">Login</a></h4>
             Login allows authorized users to login to an application.
         </li>
         <li>
