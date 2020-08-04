@@ -18,8 +18,8 @@ It has the features of
     </ul>
 <h3>User Information</h3> 
     Users should be able to view their information and perform actions with their information.
-    - [User profile Update](#UserprofileUpdate)
-    - [User password update](#passwordupdate)
+    <a href="#">User profile Update</a>
+    <a href="#">User password update</a>
     
 - <h3>User Appointments</h3>
-    Users can create and manage appointments and tasks. Users can manage their appointments by [create](#create), [update](#update), [delete](#delete) and [read](#read).
+    Users can create and manage appointments and tasks. Users can manage their appointments by <a href="#">create</a>, <a href="#">update</a>, <a href="#">delete</a> and <a href="#">read</a>.
