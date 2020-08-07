@@ -40,4 +40,13 @@ class User extends Authenticatable
         return $this->hasMany(Task::class);
     }
 
+    /**
+     * user shopping cart relationship
+     *
+     * @return HasMany
+     * @var
+     */
+    public function cart(){
+        return $this->hasMany(ShoppingCart::class);
+    }
 }
