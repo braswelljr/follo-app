@@ -13,9 +13,8 @@ class ShoppingCartController extends Controller
      *
      * @return Response
      */
-    public function index()
-    {
-        return response()->json(['message'=> 'hell']);
+    public function index(){
+        //
     }
 
     /**
