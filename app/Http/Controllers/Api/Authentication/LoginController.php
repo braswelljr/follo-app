@@ -32,9 +32,9 @@ class LoginController extends Controller
         }
 
         //create access token
-        $accessToken = Auth::user()->createToken('remember_token')->accessToken;
+        $accessToken = Auth::user()->createToken('accessToken')->accessToken;
 
-        return response()->json(['message'=>'User Login Successful','user' => Auth::user(), 'remember_token' => $accessToken]);
+        return response()->json(['message'=>'User Login Successful','user' => Auth::user(), 'accessToken' => $accessToken]);
     }
 
     /**

@@ -44,7 +44,7 @@ Route::group([
 ],function (){
     Route::post('updateAuthUser/{id}','UserUpdateController@updateAuthUser');
 
-    //task update
+    //task
     Route::post('createTask/{id}', 'TaskController@createTask');//->uses the users id
     Route::post('updateTask/{id}', 'TaskController@updateTask');//->uses the task id
     Route::post('viewTask/{id}', 'TaskController@viewTask');//->uses the task id
@@ -52,4 +52,7 @@ Route::group([
     Route::post('show/{id}', 'TaskController@show');//->uses the users id
     Route::post('taskStatus/{status}', 'TaskController@taskStatus');//-> status types incoming or past
     Route::get('search/appointments={query}', 'TaskController@search');//->search and filter task
+
+    //product
+    Route::post('store/{user_id}', 'ProductController@store');
 });

@@ -36,7 +36,7 @@ class User extends Authenticatable
      * @return HasMany
      * @var
      */
-    public function tasks(){
+    public function task(){
         return $this->hasMany(Task::class);
     }
 
@@ -46,7 +46,7 @@ class User extends Authenticatable
      * @return HasMany
      * @var
      */
-    public function cart(){
-        return $this->hasMany(ShoppingCart::class);
+    public function product(){
+        return $this->hasMany(Product::class);
     }
 }

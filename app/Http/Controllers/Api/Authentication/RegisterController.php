@@ -46,10 +46,10 @@ class RegisterController extends Controller
         $user = User::create($input);
 
         //create access token //->insert access token into user input
-        $accessToken = $user->createToken('remember_token')->accessToken;
+        $accessToken = $user->createToken('accessToken')->accessToken;
 
 
-        return response()->json(['message'=>'User Registration Successful','user' => $user, 'remember_token' => $accessToken]);
+        return response()->json(['message'=>'User Registration Successful','user' => $user, 'accessToken' => $accessToken]);
     }
 
     /**

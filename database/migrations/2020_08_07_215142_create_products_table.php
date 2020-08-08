@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ShoppingCartTable extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class ShoppingCartTable extends Migration
      */
     public function up()
     {
-        Schema::create('ShoppingCart', function(Blueprint $table){
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users','id');
             $table->string('product');
-            $table->string('status'); //purchased or pending
+            $table->string('status')->nullable(); //purchased or pending
             $table->double('amount', 10, 2);
             $table->string('payment_mode')->nullable(); //item payment type
             $table->text('description')->nullable(); //item description
@@ -32,6 +32,6 @@ class ShoppingCartTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ShoppingCart');
+        Schema::dropIfExists('products');
     }
 }

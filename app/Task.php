@@ -31,7 +31,7 @@ class Task extends Model
      *
      * @return BelongsTo
     */
-    public function userCart(){
+    public function user(){
         return $this->belongsTo(User::class);
     }
 }
