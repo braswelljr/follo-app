@@ -22,6 +22,8 @@ class TaskController extends Controller
         //find user
         $user = User::find($id);
 
+        if ($user == null) return response()->json(['message' => 'no user found']);
+
         //requesting and setting task input
         $input = $request->all();
 

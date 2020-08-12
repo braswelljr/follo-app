@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -32,13 +33,16 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Product
+     * @param Request $request
+     * @param $id
+     * @return JsonResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
+        $user = User::find($id);
+
         $product = Product::create([
-            'user_id' => $request->user()->id,
+            'user_id' => $user['id'],
             'product' => $request->product,
             'status' => $request->status,
             'amount' => $request->amount,
@@ -46,7 +50,7 @@ class ProductController extends Controller
             'description' => $request->description,
         ]);
 
-        return new Product($product);
+        return response()->json(['message' => 'Successful', 'product' => $product], 200);
     }
 
     /**
@@ -74,7 +78,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
