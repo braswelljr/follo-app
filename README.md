@@ -6,9 +6,9 @@ It has the features of
 ### Authentication
 Authentication in many applications helps very and authorize users who are eligible to use your application.
 ##### Authentication includes :
-######- Login
+###### Login
 Login allows authorized users to login to an application.
-######- Registration
+###### Registration
 The registration feature of the API allows a new user to be authorized and made eligible use the application.
 ### User Information 
 Users should be able to view their information and perform actions with their information.
