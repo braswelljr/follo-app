@@ -8,9 +8,9 @@ use Laravel\Passport\HasApiTokens;
 
 class PasswordReset extends Model
 {
-    use Notifiable,HasApiTokens;
+  use Notifiable,HasApiTokens;
 
-    protected $fillable = [
-        'email', 'token'
-    ];
+  protected $fillable = [
+    'email', 'token'
+  ];
 }

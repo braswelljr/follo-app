@@ -122,9 +122,11 @@ class TaskController extends Controller
         $columns = [ 'appointment', 'type', 'status',];
 
         foreach ($columns as $column){
-            $task = DB::table('tasks')->where(''.$column, '=', $query )->get();
-
-            return  response()->json(['task' => $task,], 200);
+            return  response()->json([
+                'task' => DB::table('tasks')
+                    ->where(''.$column, '=', $query )
+                        ->get()],
+                200);
         }
     }
 }
