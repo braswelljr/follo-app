@@ -28,6 +28,8 @@ Route::group([
 ], function () {
     Route::post('login','LoginController@login');
     Route::post('register','RegisterController@register');
+    Route::get('register/google', 'RegisterController@redirectToProvider');
+    Route::get('register/google/callback', 'RegisterController@handleProviderCallback');
 
     //password reset
     Route::post('create', 'PasswordResetController@create');

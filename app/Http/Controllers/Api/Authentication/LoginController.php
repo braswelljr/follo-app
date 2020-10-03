@@ -3,14 +3,10 @@
 namespace App\Http\Controllers\Api\Authentication;
 
 use App\Http\Controllers\Controller;
-use App\User;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -39,9 +35,9 @@ class LoginController extends Controller
 
   /**
    *Login with Google
-    * @param Request $request
-    * @return void
-    */
+   * @param Request $request
+   * @return void
+   */
   public function loginWithGoogle(Request $request){
 
   }

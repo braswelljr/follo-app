@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Authentication;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Http\Response;
 use Symfony\Component\Console\Input\Input;
 use Validator;
 use Illuminate\Http\Request;
@@ -56,19 +57,63 @@ class RegisterController extends Controller
     return response()
       ->json([
         'message'=>'User Registration Successful',
-        'user' => $user, 
+        'user' => $user,
         'accessToken' => $accessToken
       ]);
   }
 
   /**
-   * Sign up with Google account
-   * @param Request $request
+   * Redirect the user to the GitHub authentication page.
+   *
+   * @return Response
    */
-  public function registerWithGoogle(Request $request){
-
+  public function redirectToProvider(){
+    return Socialite::driver('google')->redirect();
   }
 
+  /**
+   * Obtain the user information from GitHub.
+   *
+   * @param Request $request
+   * @return \Illuminate\Http\JsonResponse
+   */
+  public function handleProviderCallback(Request $request){
+    $data = json_encode(Socialite::driver('google')->user());
+
+    $input['username'] = $data['nickname'];
+    $input['firstname'] = $data['name'];
+    $input['email'] = $data['email'];
+    $input['customer_id'] = uniqid();
+
+    $validator = Validator::make($request->all(), $input);
+
+    if ($validator->fails()){
+      return response()
+        ->json([
+          'error' => $validator
+            ->errors()
+        ],401);
+    }
+
+    $user = User::create($input);
+
+    $accessToken = $user->createToken('accessToken')->accessToken;
+
+
+    return response()
+      ->json([
+        'message'=>'User Registration Successful',
+        'user' => $user,
+        'accessToken' => $accessToken
+      ]);
+  }
+  /**
+   * @register user with facebook account
+   * @param Request $request
+   */
+  public function registerWithGoogle(Request $request, $user){
+
+  }
   /**
    * @register user with facebook account
    * @param Request $request
